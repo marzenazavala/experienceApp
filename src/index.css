@@ -14,6 +14,7 @@ body {
   background-repeat: no-repeat;
   background-position: bottom;
   background-size: cover;
+  background-color: #4e014a;
   min-height: 100%;
 }
 
@@ -56,7 +57,7 @@ input[type=password]:not(.browser-default):focus:not([readonly]) + label{
   animation: load7 1.8s infinite ease-in-out;
 }
 .loader {
-  color: #51fcba;
+  color: lime;
   font-size: 10px;
   margin: 250px auto;
   position: relative;
