@@ -11,7 +11,7 @@ const SignedInLinks = ({ signOut }) => {
       <NavLink to='/create'>New project</NavLink>
     </li>
     <li>
-      <NavLink onClick={signOut} to='/'>Logout</NavLink>
+      <a onClick={signOut}>Logout</a>
     </li>
     <li>
       <NavLink to='/' className='btn btn-floating pink'>MZ</NavLink>
