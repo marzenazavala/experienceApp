@@ -14,7 +14,7 @@ const SignedInLinks = ({ signOut, profile }) => {
       <a onClick={signOut}>Logout</a>
     </li>
     <li>
-      <NavLink to='/' className='btn btn-floating lime'>{profile.initials}</NavLink>
+      <NavLink to='/' className='btn btn-floating blue'>{profile.initials}</NavLink>
     </li>
   </ul>
   )

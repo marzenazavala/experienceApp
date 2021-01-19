@@ -14,8 +14,16 @@ body {
   background-repeat: no-repeat;
   background-position: bottom;
   background-size: cover;
-  background-color: #4e014a;
+  background-color: black;
   min-height: 100%;
+}
+
+.navbar {
+  background-image: linear-gradient(to bottom, rgb(159, 2, 170), rgb(107, 2, 121));
+}
+
+.project-summary {
+  background-image: linear-gradient(to bottom right, rgb(0, 202, 165), rgb(141, 1, 160));
 }
 
 form {
@@ -32,7 +40,7 @@ input[type=text]:not(.browser-default):focus:not([readonly]),
 input[type=email]:not(.browser-default):focus:not([readonly]),
 input[type=password]:not(.browser-default):focus:not([readonly]),
 textarea.materialize-textarea:focus:not([readonly]){
-  border-color: #00e5ff;
+  border-color: lime;
   box-shadow: none;
 }
 
@@ -40,7 +48,7 @@ input[type=text]:not(.browser-default):focus:not([readonly]) + label,
 textarea.materialize-textarea:focus:not([readonly]) + label,
 input[type=email]:not(.browser-default):focus:not([readonly]) + label,
 input[type=password]:not(.browser-default):focus:not([readonly]) + label{
-  color: #00e5ff !important;
+  color: lime !important;
 }
 
 
