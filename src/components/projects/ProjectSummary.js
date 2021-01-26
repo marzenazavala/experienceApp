@@ -6,10 +6,10 @@ const ProjectSummary = ({project}) => {
   const date = moment(createdAt).format('MMMM Do YYYY');
   return (
     <div className='card z-depth-1 project-summary'>
-    <div className='card-content white-text'>
+    <div className='card-content'>
       <span className='card-title'>{project.title}</span>
       <p>Posted by {project.authorFirstName} {project.authorLastName}</p>
-      <p className='white-text'>{date}</p>
+      <p className=''>{date}</p>
     </div>
   </div>
   )

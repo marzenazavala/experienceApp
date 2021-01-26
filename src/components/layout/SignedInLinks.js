@@ -11,10 +11,10 @@ const SignedInLinks = ({ signOut, profile }) => {
       <NavLink to='/create'>New project</NavLink>
     </li>
     <li>
-      <a onClick={signOut}>Logout</a>
+      <NavLink to='/' onClick={signOut}>Logout</NavLink>
     </li>
     <li>
-      <NavLink to='/' className='btn btn-floating blue'>{profile.initials}</NavLink>
+      <NavLink to='/dashboard' className='btn btn-floating blue'>{profile.initials}</NavLink>
     </li>
   </ul>
   )

@@ -9,7 +9,7 @@ const Navbar = ({ auth, profile }) => {
   return (
     <nav className='nav nav-wrapper navbar'>
       <div className='container'>
-        <Link to='/' className='brand-logo'>Fiesta</Link>
+        <Link to='/' className='brand-logo'>FiestaTime</Link>
         { links }
       </div>
     </nav>  

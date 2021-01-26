@@ -1,0 +1,34 @@
+.header-card {
+    width: 800px;
+    height: 600px;
+    background-image: url('../../../assets/img/home5.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.header-card-2 {
+    width: 500px;
+    height: 500px;
+    background-color: black;
+    background-image: url('../../../assets/img/silhouette-woman-doing-yoga-beach.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 20px;
+    /* border: solid 4px rgb(63, 248, 103); */
+    /* box-shadow: 2px 2px 0px grey;  */
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.header-card-title {
+    font-size: 14px;
+    line-height: 10px;
+    text-align: left !important;
+    padding: 20px;
+}
+
+.header-card-title span {
+    font-size: 28px;
+}

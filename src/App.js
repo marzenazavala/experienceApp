@@ -6,6 +6,7 @@ import ProjectDetails from './components/projects/ProjectDetails';
 import SignIn from './components/auth/SignIn';
 import SignUp from './components/auth/SignUp';
 import CreateProject from './components/projects/CreateProject';
+import HomePage from './pages/HomePage';
 
 const App = () => {
   return (
@@ -13,7 +14,8 @@ const App = () => {
       <div className="App">
         <Navbar />
         <Switch>
-          <Route exact path='/' component={Dashboard} />
+          <Route exact path='/' component={HomePage} />
+          <Route exact path='/dashboard' component={Dashboard} />
           <Route path='/project/:id' component={ProjectDetails} />
           <Route path='/signin' component={SignIn} />
           <Route path='/signup' component={SignUp} />
