@@ -14,7 +14,7 @@ const HomePage = ({ projects }) => (
     </div>
     <div className="black-text center">
       <h5>The newest events</h5>
-      <ProjectList projects={projects} />
+      { projects && <ProjectList projects={projects}/> }
     </div>
     <div className="locations-section">
       <h4>Locations</h4>
