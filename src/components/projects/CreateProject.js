@@ -1,51 +1,68 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { createProject } from '../../store/actions/projectActions';
+import firebase  from '../../config/fbConfig';
 
-class CreateProject extends Component {
-  state = {
-    title: '',
-    content: '',
-    duration: '',
-    price: ''
-  };
+const CreateProject = (props) => {
 
-  handleSubmit = (e) => {
+
+const [values, setValues] = useState({
+  title: '',
+  content: '',
+  duration: '',
+  price: '',
+})
+
+const [fileUrl, setFileUrl] = useState(null)
+
+  const handleSubmit = (e) => {
     e.preventDefault();
-   this.props.createProject(this.state);
-   this.props.history.push('/');
+   props.createProject({...values, fileUrl});
+   props.history.push('/');
   };
 
-  handleChange = (e) => {
-    this.setState({
+  const handleChange = (e) => {
+    setValues({
+      ...values,
       [e.target.id]: e.target.value
     });
   };
 
-  render() {
-    const { auth } = this.props;
+  const handleFileChange = async (e) => {
+    const file = e.target.files[0];
+    const storageRef = firebase.storage().ref();
+    const fileRef = storageRef.child(file.name);
+    await fileRef.put(file)
+      setFileUrl(await fileRef.getDownloadURL())
+  };
+
+  
+    const { auth } = props;
     if(!auth.uid) return <Redirect to='/signin' />;
 
     return (
       <div className='container'>
-        <form onSubmit={this.handleSubmit} className='white'>
+        <form onSubmit={handleSubmit} className='white'>
           <h5 className='grey-text text-darken-3'>Create New Project</h5>
           <div className='input-field'>
             <label htmlFor='title'>Title</label>
-            <input type='text' id='title' onChange={this.handleChange}/>
+            <input value={values.title} type='text' id='title' onChange={handleChange}/>
           </div>
           <div className='input-field'>
             <label htmlFor='content'>Details</label>
-            <textarea id='content' className='materialize-textarea' onChange={this.handleChange}/>
+            <textarea value={values.content} id='content' className='materialize-textarea' onChange={handleChange}/>
           </div>
           <div className='input-field'>
             <label htmlFor='duration'>Duration</label>
-            <input type='text' id='duration' onChange={this.handleChange}/>
+            <input value={values.duration} type='text' id='duration' onChange={handleChange}/>
           </div>
           <div className='input-field'>
             <label htmlFor='price'>Price</label>
-            <input type='text' id='price' onChange={this.handleChange}/>
+            <input value={values.price} type='text' id='price' onChange={handleChange}/>
+          </div>
+          <div className='input-field'>
+            <input value={values.fileUrl} type='file' id='photo' onChange={handleFileChange}/>
           </div>
           <div className='input-field'>
             <button className='btn lime accent-4 z-depth-0'>Create</button>
@@ -53,7 +70,6 @@ class CreateProject extends Component {
         </form>      
       </div>
     )
-  }
 };
 
 const mapStateToProps = (state) => {
