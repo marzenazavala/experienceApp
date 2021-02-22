@@ -7,6 +7,7 @@ import SignUp from './components/auth/SignUp';
 import CreateProject from './components/projects/CreateProject';
 import HomePage from './pages/HomePage';
 import ProjectDetailsPage from './pages/projectDetails/ProjectDetailsPage';
+import NewExperienceForm from './components/form/NewExperienceForm';
 
 const App = () => {
   return (
@@ -20,6 +21,7 @@ const App = () => {
           <Route path='/signin' component={SignIn} />
           <Route path='/signup' component={SignUp} />
           <Route path='/create' component={CreateProject} />
+          <Route path='/new-experience' component={NewExperienceForm} />
         </Switch>
       </div>
     </BrowserRouter>

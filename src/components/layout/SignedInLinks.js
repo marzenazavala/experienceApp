@@ -8,6 +8,9 @@ const SignedInLinks = ({ signOut, profile }) => {
   return (
   <ul className='right'>
     <li>
+      <NavLink to='/new-experience'>New experience</NavLink>
+    </li>
+    <li>
       <NavLink to='/create'>New project</NavLink>
     </li>
     <li>

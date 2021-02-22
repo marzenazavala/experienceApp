@@ -9,6 +9,7 @@ import { projectData } from './projectData';
 import ProjectGallery from '../../components/layout/projectDetails/ProjectGallery';
 import './projectDetails-styles.css';
 import ProjectDetails from '../../components/layout/projectDetails/ProjectDetails';
+import AboutHost from '../../components/layout/projectDetails/AboutHost';
 
 
 const ProjectDetailsPage = ({project}) => (
@@ -23,7 +24,9 @@ const ProjectDetailsPage = ({project}) => (
       <Divider orientation='horizontal' />
       <ProjectDetails project={project}/>
       <Divider orientation='horizontal' />
-      <div>About host</div>
+      
+      <AboutHost />
+      
       <Divider orientation='horizontal' />
       <div>Funny icons about fiestatime</div>
       <Divider orientation='horizontal' />
