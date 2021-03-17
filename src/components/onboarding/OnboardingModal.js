@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import { ReactComponent as GiveIcon } from '../../assets/icons/007-smile.svg';
-import { ReactComponent as FunIcon} from '../../assets/icons/007-smile.svg';
+import { ReactComponent as GiveIcon } from '../../assets/icons/headdress.svg';
+import { ReactComponent as FunIcon} from '../../assets/icons/dancer.svg';
 import { ReactComponent as PostedIcon} from '../../assets/icons/cocktail.svg';
-import { ReactComponent as GiftIcon} from '../../assets/icons/cocktail.svg';
+import { ReactComponent as GiftIcon} from '../../assets/icons/brazil.svg';
 import OnboardingStepper from './OnboardingStepper';
 
 
@@ -23,13 +23,12 @@ const useStyles = makeStyles((theme) => ({
         
       },
       image: {
+        height: '100%',
         backgroundRepeat: 'no-repeat',
         [theme.breakpoints.up('sm')]:{
-          backgroundColor: 'rgb(255,235,59,0.08)',
+          backgroundColor: 'rgb(247, 73, 116)',
         },
         backgroundColor: '#fff',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
       },
       icons: {
         height: '100%',
@@ -59,6 +58,10 @@ const useStyles = makeStyles((theme) => ({
       box: {
         padding: theme.spacing(5, 0)
       },
+      title: {
+        fontSize: '1.5rem',
+        fontWeight: 'bold',
+      }
 }));
 
 function getSteps() {
@@ -78,26 +81,26 @@ const OnboardingModal = ({close}) => {
     const getStepTitle = (activeStep) => {
         switch (activeStep) {
             case 2: 
-                return 'Got a gift? Wohoo!';
+                return 'Invite people';
             case 3:
-                return 'Community guidelines ';
+                return 'Have fun';
             case 4: 
-                return 'Lokali grows from invites';
+                return 'Share reviews';
             default: 
-                return 'Create a post to give or ask for a gift'
+                return 'Create something good'
         }
     }
 
     const getStepContent = (activeStep) => {
       switch (activeStep) {
           case 2: 
-              return 'Click value gift to say thanks';
+              return 'People will book your experience with specific date and time.';
           case 3:
-              return 'Our guidelines are to keep everyone safe and feeling welcome.';
+              return 'Make people have fun during your show.';
           case 4: 
-              return 'We want awesome people like you to join our community and add to the abundance. Its free, easy and your friends will thank you. Think of it as your first gift to the communty.';
+              return 'Your guests will write some reviews about the experience. Share them with the world.';
           default: 
-              return 'Lorem ipsum dolor sin amet'
+              return 'Create your experience to share.'
       }
   }
 
@@ -126,7 +129,7 @@ const OnboardingModal = ({close}) => {
               }   
             </Grid>
               <Grid item xs={12} sm={7} md={7} elevation={0} className={classes.textSide}>
-                  <Typography variant="p" className={classes.box}>
+                  <Typography variant="p" className={classes.title}>
                   {getStepTitle(activeStep)}
                   </Typography>
                   <Typography  variant="p" className={classes.box}>

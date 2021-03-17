@@ -3,7 +3,7 @@ import { makeStyles, withStyles } from '@material-ui/core/styles';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepConnector from '@material-ui/core/StepConnector';
-import Link from '@material-ui/core/Link';
+import Button from '@material-ui/core/Button';
 
 const QontoConnector = withStyles({
   alternativeLine: {
@@ -13,12 +13,12 @@ const QontoConnector = withStyles({
   },
   active: {
     '& $line': {
-      borderColor: 'rgb(77, 145, 247)',
+      borderColor: 'rgb(247, 73, 116)',
     },
   },
   completed: {
     '& $line': {
-      borderColor: 'rgb(77, 145, 247)',
+      borderColor: 'rgb(247, 73, 116)',
     },
   },
   line: {
@@ -32,25 +32,18 @@ const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
   },
-  btn: {
-		borderRadius: 8,
-		background: 'rgb(77, 145, 247)',
-        color: '#fff',
-		fontWeight: 400,
-		padding: theme.spacing(0.5, 5),
-    '&:hover': {
-      cursor: 'pointer',
-      textDecoration: 'none'
-    }
-	},
   stepper: {
     boxShadow: 'none',
   },
+  button: {
+'&:focus': {
+    backgroundColor: 'rgb(247, 73, 116)'
+}
+  },
   skip: {
     color: 'gray',
-    fontSize: '14px',
+    fontSize: '12px',
     '&:hover': { 
-      color: 'black',
       cursor: 'pointer'
     }
   }
@@ -63,13 +56,15 @@ const OnboardingStepper = ({handleNext, activeStep, steps, close}) => {
   return (
     <div className={classes.root}>
         <div>
-            <Link
+            <Button
+                disableElevation 
+                color="secondary"
                 variant="contained"
+                className={classes.button}
                 onClick={activeStep === steps.length - 1 ? close : handleNext}
-                className={classes.btn}
             >
                 {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
-            </Link>
+            </Button>
         </div>
             <Stepper alternativeLine activeStep={activeStep} className={classes.stepper} connector={<QontoConnector />}>
                 {steps.map((step) => (<Step key={step} />))}
