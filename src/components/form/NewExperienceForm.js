@@ -7,6 +7,7 @@ import Paper from '@material-ui/core/Paper';
 import MenuItem from '@material-ui/core/MenuItem';
 import { duration, group, languages } from '../../utils/newExperienceData';
 import { collections } from '../../utils/collections';
+import DatePicker from './DatePicker';
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
@@ -172,6 +173,7 @@ const NewExperienceForm = () => {
               label="Price"
               fullWidth
             />
+            <DatePicker />
           </Grid>
         </Grid>
       </Paper>

@@ -10,6 +10,7 @@ import MainPageProjectsList from '../components/projects/MainPageProjectsList';
 import CollectionsSection from '../sections/Collections';
 import Divider from '@material-ui/core/Divider';
 
+
 const HomePage = ({ projects }) => (
   <>
     <Header />
