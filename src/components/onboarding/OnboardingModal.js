@@ -23,12 +23,16 @@ const useStyles = makeStyles((theme) => ({
         
       },
       image: {
-        height: '100%',
-        backgroundRepeat: 'no-repeat',
         [theme.breakpoints.up('sm')]:{
           backgroundColor: 'rgb(247, 73, 116)',
+          borderRadius: '5px 0 0 5px',
+          display: 'flex',
+          maxHeight: '100%',
         },
-        backgroundColor: '#fff',
+        maxHeight: '40%',
+        backgroundRepeat: 'no-repeat',
+        borderRadius: '5px 5px 0px 0',
+        backgroundColor: 'rgb(247, 73, 116)',
       },
       icons: {
         height: '100%',
@@ -42,7 +46,7 @@ const useStyles = makeStyles((theme) => ({
         padding: theme.spacing(2),
       },
       textSide: {
-        maxHeight: '50vh',
+        maxHeight: '100vh',
         textAlign: 'center',
         [theme.breakpoints.up('sm')]:{
           justifyContent: 'space-between', 
@@ -53,7 +57,7 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        justifyContent: 'center', 
+        justifyContent: 'space-between', 
       },
       box: {
         padding: theme.spacing(5, 0)

@@ -11,6 +11,7 @@ import CollectionsSection from '../sections/Collections';
 import Divider from '@material-ui/core/Divider';
 
 
+
 const HomePage = ({ projects }) => (
   <>
     <Header />
@@ -25,16 +26,16 @@ const HomePage = ({ projects }) => (
       <CollectionsSection />
     </div>
     
-    <Features />
+    {/* <Features /> */}
     
-    <div className="newsletter-section black-text center">
+    {/* <div className="newsletter-section black-text center">
     
     </div>
 
     <div className="black-text center categories-section">
       <h5>Categories</h5>
       { projects && <MainPageProjectsList projects={projects}/> }
-    </div>
+    </div> */}
 
     <Footer />
   </>
