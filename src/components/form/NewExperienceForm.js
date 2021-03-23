@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
-import Button from '@material-ui/core/Button';
+// import Button from '@material-ui/core/Button';
 import MenuItem from '@material-ui/core/MenuItem';
 import { duration, group, languages } from '../../utils/newExperienceData';
 import { collections } from '../../utils/collections';
@@ -12,6 +12,8 @@ import {Formik, Form} from 'formik';
 import * as Yup from 'yup';
 import TextField from './wrappers/TextFieldWrapper';
 import Select from './wrappers/SelectWrapper';
+import Button from './wrappers/ButtonWrapper';
+
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
@@ -41,9 +43,12 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: 'Lemonada',
     fontSize: '18px',
     textAlign: 'center',
+    lineHeight: '5px'
   },
   subtitle: {
-    fontSize: '14px',
+    fontFamily: 'Lemonada',
+    fontSize: '12px',
+    lineHeight: '0px'
   },
   form: {
     marginTop: '10px'
@@ -125,17 +130,78 @@ const NewExperienceForm = ({handleChange}) => {
             <TextField 
               required
               multiline
+              rows="3"
               id="description"
               name="description"
               label="Description"
             />
           </Grid>
+
           <Grid item xs={12} sm={12}>
+            <Typography  gutterBottom className={classes.subtitle}>
+              Choose more details
+            </Typography>
+          </Grid>
+          <Grid item xs={6} sm={6}>
+            <DatePicker
+              type="date" 
+              name="date"
+              label="Date"
+            />
+          </Grid>
+          <Grid item xs={6} sm={6}>
+            <DatePicker 
+              type="time"
+              name="time"
+              label="Time"
+            />
+          </Grid>
+          <Grid item xs={12} sm={4}>
+            <TextField 
+              required
+              multiline
+              id="price"
+              name="price"
+              label="Price USD/person"
+            />
+          </Grid>
+          <Grid item xs={12} sm={4}>
+            <Select 
+              required
+              value={duration}
+              onChange={handleChange}
+              id="duration"
+              name="duration"
+              label="Duration"
+            >
+              {duration.map(option => (
+                <MenuItem key={option.value} value={option.value}>
+                  {option.label}
+                </MenuItem>
+              ))}
+            </Select>
+          </Grid>
+          <Grid item xs={12} sm={4}>
+            <Select 
+              required
+              value={group}
+              onChange={handleChange}
+              id="group"
+              name="group"
+              label="Group up to"
+            >
+              {group.map(option => (
+                <MenuItem key={option.value} value={option.value}>
+                  {option.label}
+                </MenuItem>
+              ))}
+            </Select>
+          </Grid>
+          <Grid item xs={12} sm={6}>
             <Select 
               required
               value={collections}
               onChange={handleChange}
-              helperText="Select category of experience"
               id="collection"
               name="collection"
               label="Collection"
@@ -146,18 +212,6 @@ const NewExperienceForm = ({handleChange}) => {
                 </MenuItem>
               ))}
             </Select>
-          </Grid>
-          <Grid item xs={12} sm={12}>
-          <Typography  gutterBottom>Choose more details</Typography>
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <TextField 
-              required
-              multiline
-              id="price"
-              name="price"
-              label="Price"
-            />
           </Grid>
           <Grid item xs={12} sm={6}>
             <Select 
@@ -175,55 +229,11 @@ const NewExperienceForm = ({handleChange}) => {
               ))}
             </Select>
           </Grid>
-          <Grid item xs={12} sm={6}>
-            <Select 
-              required
-              value={duration}
-              onChange={handleChange}
-              id="duration"
-              name="duration"
-              label="Duration"
-            >
-              {duration.map(option => (
-                <MenuItem key={option.value} value={option.value}>
-                  {option.label}
-                </MenuItem>
-              ))}
-            </Select>
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <Select 
-              required
-              value={group}
-              onChange={handleChange}
-              helperText="Select maximum amount of people"
-              id="group"
-              name="group"
-              label="Group up to"
-            >
-              {group.map(option => (
-                <MenuItem key={option.value} value={option.value}>
-                  {option.label}
-                </MenuItem>
-              ))}
-            </Select>
-          </Grid>
-          <Grid item xs={6}>
-            <DatePicker
-              type="date" 
-              name="date"
-              label="Date"
-            />
-          </Grid>
-          <Grid item xs={6}>
-            <DatePicker 
-              type="time"
-              name="time"
-              label="Time"
-            />
-          </Grid>
+          
+        
           <Grid item xs={12} className={classes.buttons}>
-            <Button 
+            <Button>Submit</Button>
+            {/* <Button 
               type="submit" 
               color="secondary" 
               variant="contained" 
@@ -231,7 +241,7 @@ const NewExperienceForm = ({handleChange}) => {
               
               >
                 Submit
-              </Button>
+              </Button> */}
           </Grid>
           
         </Grid>
