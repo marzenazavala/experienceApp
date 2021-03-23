@@ -4,6 +4,7 @@ import { firestoreConnect } from 'react-redux-firebase';
 import { Redirect } from 'react-router-dom';
 import { compose } from 'redux';
 import Divider from '@material-ui/core/Divider';
+import Link from '@material-ui/core/Link';
 import { Container } from '@material-ui/core';
 import { projectData } from './projectData';
 import ProjectGallery from '../../components/layout/projectDetails/ProjectGallery';
@@ -16,7 +17,7 @@ const ProjectDetailsPage = ({project}) => (
   <>
     <Container>
       <div>
-        <div>header</div>
+        <Link href="/" color="inherit">Show all experiences</Link>
       </div>
       <div>
         <ProjectGallery projectData={projectData} className='project-gallery'/>
