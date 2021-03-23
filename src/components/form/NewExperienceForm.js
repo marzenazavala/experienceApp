@@ -1,13 +1,17 @@
-import React,  { useState } from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import TextField from '@material-ui/core/TextField';
 import Paper from '@material-ui/core/Paper';
+import Button from '@material-ui/core/Button';
 import MenuItem from '@material-ui/core/MenuItem';
 import { duration, group, languages } from '../../utils/newExperienceData';
 import { collections } from '../../utils/collections';
-import DatePicker from './DatePicker';
+import DatePicker from './wrappers/DatePicker';
+import {Formik, Form} from 'formik';
+import * as Yup from 'yup';
+import TextField from './wrappers/TextFieldWrapper';
+import Select from './wrappers/SelectWrapper';
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
@@ -46,16 +50,43 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const INITIAL_FORM_STATE = {
+  title: '',
+  description: '',
+  collection: '',
+  language: '',
+  price: '',
+  duration: '',
+  group: '',
+  date: ''
+}
 
-const NewExperienceForm = () => {
+const FORM_VALIDATION = Yup.object().shape({
+  title: Yup.string()
+  .required('Title is required'),
+  description: Yup.string()
+  .required('Description is required'),
+  collection: Yup.string()
+  .required('Choose the collection'),
+  language: Yup.string()
+  .required('Choose the language'),
+  price: Yup.number()
+  .integer()
+  .required('Price is required'),
+  duration: Yup.string()
+  .required('Duration is required'),
+  group: Yup.number()
+  .integer()
+  .typeError('Please enter a valid amount as a number')
+  .required('Amount of people is required'),
+  date: Yup.date()
+  .required('Choose date for your event')
+});
+
+const NewExperienceForm = ({handleChange}) => {
   const classes = useStyles();
 
-  const [durationValue, setDurationValue] = useState('');
-
-  const handleDurationChange = (event) => {
-    setDurationValue(event.target.value);
-    console.log(durationValue)
-  };
+ 
 
   return(
     <>
@@ -64,118 +95,128 @@ const NewExperienceForm = () => {
         <Typography variant="h5" gutterBottom  color="textSecondary" align="center">
           Create New Experience
         </Typography>
-        <Grid container spacing={3}>
-          <Grid item sm={12}>
+        <Formik 
+          initialValues={{...INITIAL_FORM_STATE}}
+          validationSchema={FORM_VALIDATION}
+          onSubmit = {values => {
+            console.log(values)
+          }}
+        >
+          <Form>
+          <Grid container spacing={3}>
+          <Grid item xs={12} sm={12}>
             <TextField 
               required
               multiline
               id="title"
               name="title"
               label="Title"
-              fullWidth
             />
           </Grid>
-          <Grid item sm={12}>
+          <Grid item xs={12} sm={12}>
             <TextField 
               required
               multiline
               id="description"
               name="description"
               label="Description"
-              fullWidth
             />
           </Grid>
-          <Grid item sm={12}>
-          <Typography  gutterBottom>Choose more details</Typography>
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <TextField 
+          <Grid item xs={12} sm={12}>
+            <Select 
               required
-              select
-              value={duration}
-              onChange={handleDurationChange}
-              helperText="Please select duration of experience"
-              id="duration"
-              name="duration"
-              label="Duration"
-              fullWidth
-            >
-              {duration.map(option => (
-                <MenuItem key={option.value} value={option.value}>
-                  {option.label}
-                </MenuItem>
-              ))}
-            </TextField>
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <TextField 
-              required
-              select
-              value={group}
-              onChange={handleDurationChange}
-              helperText="Please select maximum amount of people"
-              id="group"
-              name="group"
-              label="Group up to"
-              fullWidth
-            >
-              {group.map(option => (
-                <MenuItem key={option.value} value={option.value}>
-                  {option.label}
-                </MenuItem>
-              ))}
-            </TextField>
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <TextField 
-              required
-              select
-              value={languages}
-              onChange={handleDurationChange}
-              helperText="Please select language of experience"
-              id="language"
-              name="language"
-              label="Language"
-              fullWidth
-            >
-              {languages.map(option => (
-                <MenuItem key={option.value} value={option.value}>
-                  {option.label}
-                </MenuItem>
-              ))}
-            </TextField>
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <TextField 
-              required
-              select
               value={collections}
-              onChange={handleDurationChange}
-              helperText="Please select language of experience"
+              onChange={handleChange}
+              helperText="Select collection of experience"
               id="collection"
               name="collection"
               label="Collection"
-              fullWidth
             >
               {collections.map(option => (
                 <MenuItem key={option.title} value={option.title}>
                   {option.title}
                 </MenuItem>
               ))}
-            </TextField>
+            </Select>
           </Grid>
-          <Grid item sm={12}>
+          <Grid item xs={12} sm={12}>
+          <Typography  gutterBottom>Choose more details</Typography>
+          </Grid>
+          <Grid item xs={12} sm={6}>
             <TextField 
               required
               multiline
               id="price"
               name="price"
               label="Price"
-              fullWidth
             />
-            <DatePicker />
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <Select 
+              required
+              value={languages}
+              onChange={handleChange}
+              id="language"
+              name="language"
+              label="Language"
+            >
+              {languages.map(option => (
+                <MenuItem key={option.value} value={option.value}>
+                  {option.label}
+                </MenuItem>
+              ))}
+            </Select>
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <Select 
+              required
+              value={duration}
+              onChange={handleChange}
+              id="duration"
+              name="duration"
+              label="Duration"
+            >
+              {duration.map(option => (
+                <MenuItem key={option.value} value={option.value}>
+                  {option.label}
+                </MenuItem>
+              ))}
+            </Select>
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <Select 
+              required
+              value={group}
+              onChange={handleChange}
+              helperText="Select maximum amount of people"
+              id="group"
+              name="group"
+              label="Group up to"
+            >
+              {group.map(option => (
+                <MenuItem key={option.value} value={option.value}>
+                  {option.label}
+                </MenuItem>
+              ))}
+            </Select>
+          </Grid>
+          <Grid item xs={6}>
+            <DatePicker 
+              name="date"
+              label="Date"
+            />
+          </Grid>
+          <Grid item xs={6}>
+            <DatePicker 
+              name="date"
+              label="Date"
+            />
           </Grid>
         </Grid>
+        <Button secondary type="submit">Submit</Button>
+          </Form>
+        </Formik>
+        
       </Paper>
       </main>
     </>
