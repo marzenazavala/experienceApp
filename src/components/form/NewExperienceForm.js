@@ -37,16 +37,20 @@ const useStyles = makeStyles((theme) => ({
       padding: theme.spacing(3),
     },
   },
-  stepper: {
-    padding: theme.spacing(3, 0, 5),
+  title: {
+    fontFamily: 'Lemonada',
+    fontSize: '18px',
+    textAlign: 'center',
+  },
+  subtitle: {
+    fontSize: '14px',
+  },
+  form: {
+    marginTop: '10px'
   },
   buttons: {
     display: 'flex',
     justifyContent: 'flex-end',
-  },
-  button: {
-    marginTop: theme.spacing(3),
-    marginLeft: theme.spacing(1),
   },
 }));
 
@@ -58,7 +62,8 @@ const INITIAL_FORM_STATE = {
   price: '',
   duration: '',
   group: '',
-  date: ''
+  date: '',
+  time: ''
 }
 
 const FORM_VALIDATION = Yup.object().shape({
@@ -80,7 +85,9 @@ const FORM_VALIDATION = Yup.object().shape({
   .typeError('Please enter a valid amount as a number')
   .required('Amount of people is required'),
   date: Yup.date()
-  .required('Choose date for your event')
+  .required('Choose date for your event'),
+  time: Yup.string()
+  .required('Choose time for your event')
 });
 
 const NewExperienceForm = ({handleChange}) => {
@@ -92,8 +99,9 @@ const NewExperienceForm = ({handleChange}) => {
     <>
       <main className={classes.layout}>
       <Paper className={classes.paper}>
-        <Typography variant="h5" gutterBottom  color="textSecondary" align="center">
-          Create New Experience
+        <Typography color="textPrimary" className={classes.title}>
+          <p>Create New Experience</p>
+          <span className={classes.subtitle}>Share with the world your passion</span>
         </Typography>
         <Formik 
           initialValues={{...INITIAL_FORM_STATE}}
@@ -102,8 +110,8 @@ const NewExperienceForm = ({handleChange}) => {
             console.log(values)
           }}
         >
-          <Form>
-          <Grid container spacing={3}>
+          <Form className={classes.form}>
+          <Grid container spacing={2}>
           <Grid item xs={12} sm={12}>
             <TextField 
               required
@@ -127,7 +135,7 @@ const NewExperienceForm = ({handleChange}) => {
               required
               value={collections}
               onChange={handleChange}
-              helperText="Select collection of experience"
+              helperText="Select category of experience"
               id="collection"
               name="collection"
               label="Collection"
@@ -201,19 +209,32 @@ const NewExperienceForm = ({handleChange}) => {
             </Select>
           </Grid>
           <Grid item xs={6}>
-            <DatePicker 
+            <DatePicker
+              type="date" 
               name="date"
               label="Date"
             />
           </Grid>
           <Grid item xs={6}>
             <DatePicker 
-              name="date"
-              label="Date"
+              type="time"
+              name="time"
+              label="Time"
             />
           </Grid>
+          <Grid item xs={12} className={classes.buttons}>
+            <Button 
+              type="submit" 
+              color="secondary" 
+              variant="contained" 
+              disableElevation 
+              
+              >
+                Submit
+              </Button>
+          </Grid>
+          
         </Grid>
-        <Button secondary type="submit">Submit</Button>
           </Form>
         </Formik>
         

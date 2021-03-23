@@ -23,6 +23,12 @@ input[type=date] {
   padding: 0 10px !important;
 }
 
+input[type=time] {
+  border-bottom: 0 !important;
+  margin: 0 !important;
+  padding: 0 10px !important;
+}
+
 
 .header {
   width: 100%;

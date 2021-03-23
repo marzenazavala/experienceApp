@@ -6,7 +6,6 @@ const DatePicker = (props) => {
   const [field, meta] = useField(props)
 
   const configDatePicker = {
-    type:'date',
     variant: 'outlined',
     fullWidth: true,
     ...props,
