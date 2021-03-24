@@ -31,11 +31,11 @@ const BookingForm = (project) => {
       <div className={classes.root}>
         <Paper variant="outlined" >
           <div className={classes.title}>Book Now</div>
-          <div>From 12$/person</div>
+          <div>From {project.project.price} USD/person</div>
           <div>
-            <ProjectDataCardForBooking />
-            <ProjectDataCardForBooking />
-            <ProjectDataCardForBooking />
+            <ProjectDataCardForBooking details={project}/>
+            <ProjectDataCardForBooking details={project}/>
+            <ProjectDataCardForBooking details={project}/>
           </div>
           <Button className={classes.button} disableElevation variant="outlined" color="secondary">See more possibilities</Button>
         </Paper>
