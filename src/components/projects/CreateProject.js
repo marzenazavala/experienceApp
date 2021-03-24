@@ -6,7 +6,6 @@ import firebase  from '../../config/fbConfig';
 
 const CreateProject = (props) => {
 
-
 const [values, setValues] = useState({
   title: '',
   content: '',

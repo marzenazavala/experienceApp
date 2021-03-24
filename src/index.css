@@ -17,6 +17,15 @@ body {
   min-height: 100%;
 }
 
+.withBkg {
+  background-image: url('./assets/img/34.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+  height: 100%;
+}
+
 input[type=date] {
   border-bottom: 0 !important;
   margin: 0 !important;
