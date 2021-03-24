@@ -15,9 +15,6 @@ const SignedInLinks = ({ signOut, profile }) => {
       <NavLink to='/new-experience'>New experience</NavLink>
     </li>
     <li>
-      <NavLink to='/create'>New project</NavLink>
-    </li>
-    <li>
       <NavLink to='/' onClick={signOut}>Logout</NavLink>
     </li>
     <li>
