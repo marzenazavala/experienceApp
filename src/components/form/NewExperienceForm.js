@@ -3,7 +3,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
-// import Button from '@material-ui/core/Button';
 import MenuItem from '@material-ui/core/MenuItem';
 import { duration, group, languages } from '../../utils/newExperienceData';
 import { collections } from '../../utils/collections';
@@ -13,12 +12,12 @@ import * as Yup from 'yup';
 import TextField from './wrappers/TextFieldWrapper';
 import Select from './wrappers/SelectWrapper';
 import Button from './wrappers/ButtonWrapper';
+import { connect } from 'react-redux';
+import {createProject} from '../../store/actions/projectActions';
+import { Redirect } from 'react-router-dom';
 
 
 const useStyles = makeStyles((theme) => ({
-  appBar: {
-    position: 'relative',
-  },
   layout: {
     width: 'auto',
     marginLeft: theme.spacing(2),
@@ -51,7 +50,7 @@ const useStyles = makeStyles((theme) => ({
     lineHeight: '0px'
   },
   form: {
-    marginTop: '10px'
+    marginTop: '0px'
   },
   buttons: {
     display: 'flex',
@@ -95,10 +94,16 @@ const FORM_VALIDATION = Yup.object().shape({
   .required('Choose time for your event')
 });
 
-const NewExperienceForm = ({handleChange}) => {
+const NewExperienceForm = ({handleChange, auth, createProject, history}) => {
   const classes = useStyles();
 
- 
+  const handleSubmit = (values) => {
+    createProject({...values});
+    history.push('/');
+    console.log(values)
+  };
+
+  if(!auth.uid) return <Redirect to='/signin' />
 
   return(
     <>
@@ -111,9 +116,7 @@ const NewExperienceForm = ({handleChange}) => {
         <Formik 
           initialValues={{...INITIAL_FORM_STATE}}
           validationSchema={FORM_VALIDATION}
-          onSubmit = {values => {
-            console.log(values)
-          }}
+          onSubmit = {handleSubmit}
         >
           <Form className={classes.form}>
           <Grid container spacing={2}>
@@ -254,4 +257,16 @@ const NewExperienceForm = ({handleChange}) => {
   )
 };
 
-export default NewExperienceForm;
+const mapStateToProps = (state) => {
+  return {
+    auth: state.firebase.auth,
+  }
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    createProject: (project) => dispatch(createProject(project))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(NewExperienceForm);

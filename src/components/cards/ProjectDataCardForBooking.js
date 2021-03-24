@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const ProjectDataCardForBooking = () => {
+const ProjectDataCardForBooking = ({details}) => {
   const classes = useStyles();
 
   return (
@@ -40,8 +40,8 @@ const ProjectDataCardForBooking = () => {
     <div className={classes.root}>
       <Grid container spacing={3} className={classes.flex}>
         <Grid item xs={6}>
-          <div className={classes.content}>8 Mar, Mon</div>
-          <div className={classes.hour}>5:00 - 6:00 PM</div>
+          <div className={classes.content}>{details.project.date}</div>
+          <div className={classes.hour}>{details.project.time}</div>
         </Grid>
         <Grid item xs={6}>
           <Button  disableElevation variant="contained" color="secondary">Book</Button>

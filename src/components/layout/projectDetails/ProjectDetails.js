@@ -70,7 +70,7 @@ const ProjectDetails = ({project}) => {
               <p className={classes.textSmall}>hosted by</p>
               <p className={classes.textBigger}> {project.authorFirstName} {project.authorLastName} </p>
               <p className={classes.textSmall}>from <span>Puerto Rico</span></p>
-              <Avatar className={classes.large} alt="Johnny Lozada" src="https://pbs.twimg.com/profile_images/1004869186089312258/BGYHhJOl_400x400.jpg" />
+              <Avatar className={classes.large} alt="host-avatar" src="https://pbs.twimg.com/profile_images/1004869186089312258/BGYHhJOl_400x400.jpg" />
             </div> 
           </div>
           <Divider orientation='horizontal' />
@@ -84,26 +84,26 @@ const ProjectDetails = ({project}) => {
               <Grid item xs={12} sm={6}>
                 <Box className={classes.features}>
                   <AttachMoneyIcon />
-                  <div className={classes.content}>{project.price}</div>
+                  <div className={classes.content}>{project.price} USD</div>
                 </Box>
               </Grid>
               <Grid item xs={12} sm={6}>
                 <Box className={classes.features}>
                   <GroupIcon />
-                  <div className={classes.content}>Perfect for group up to 6 people</div>
+                  <div className={classes.content}>Perfect for group up to {project.group} people</div>
                 </Box>
               </Grid>
               <Grid item xs={12} sm={6}>
                 <Box className={classes.features}>
                   <ForumIcon />
-                  <div className={classes.content}>Languages: English, Spanish, Italian</div>
+                  <div className={classes.content}>Languages: {project.language}</div>
                 </Box>
               </Grid>
             </Grid>
             <Divider orientation='horizontal' />
             <h6 className={classes.paper}>What we gonna do...</h6>
             <p className={classes.content}>
-              {project.content}
+              {project.description}
             </p>
           </Grid>
        
