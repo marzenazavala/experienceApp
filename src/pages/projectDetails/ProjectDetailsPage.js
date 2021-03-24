@@ -11,6 +11,7 @@ import ProjectGallery from '../../components/layout/projectDetails/ProjectGaller
 import './projectDetails-styles.css';
 import ProjectDetails from '../../components/layout/projectDetails/ProjectDetails';
 import AboutHost from '../../components/layout/projectDetails/AboutHost';
+import FiestaTimeFeatures from '../../components/layout/projectDetails/FiestaTimeFeatures';
 
 
 const ProjectDetailsPage = ({project}) => (
@@ -23,13 +24,11 @@ const ProjectDetailsPage = ({project}) => (
         <ProjectGallery projectData={projectData} className='project-gallery'/>
       </div>
       <Divider orientation='horizontal' />
-      <ProjectDetails project={project}/>
+        <ProjectDetails project={project}/>
       <Divider orientation='horizontal' />
-      
-      <AboutHost />
-      
+        <AboutHost />
       <Divider orientation='horizontal' />
-      <div>Funny icons about fiestatime</div>
+        <FiestaTimeFeatures />
       <Divider orientation='horizontal' />
       <div>Reviews</div>
     </Container>
@@ -37,7 +36,6 @@ const ProjectDetailsPage = ({project}) => (
 );
 
 const mapStateToProps = (state, ownProps) => {
-  console.log('ownProps...', ownProps);
   const {id} = ownProps.match.params;
   const projects = state.firestore.data.projects;
   const project = projects ? projects[id] : null;

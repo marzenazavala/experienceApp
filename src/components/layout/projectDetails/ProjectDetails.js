@@ -90,7 +90,7 @@ const ProjectDetails = ({project}) => {
               <Grid item xs={12} sm={6}>
                 <Box className={classes.features}>
                   <GroupIcon />
-                  <div className={classes.content}>Perfect for group up to {project.group} people</div>
+                  <div className={classes.content}>Group up to {project.group} people</div>
                 </Box>
               </Grid>
               <Grid item xs={12} sm={6}>
