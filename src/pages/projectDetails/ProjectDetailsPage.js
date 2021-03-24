@@ -17,9 +17,7 @@ import FiestaTimeFeatures from '../../components/layout/projectDetails/FiestaTim
 const ProjectDetailsPage = ({project}) => (
   <>
     <Container>
-      <div>
         <Link href="/" color="inherit">Show all experiences</Link>
-      </div>
       <div>
         <ProjectGallery projectData={projectData} className='project-gallery'/>
       </div>

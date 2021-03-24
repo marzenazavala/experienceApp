@@ -4,6 +4,7 @@ import Grid from '@material-ui/core/Grid';
 import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
 import VerifiedUserIcon from '@material-ui/icons/VerifiedUser';
+import Badges from '../../badges/Badges';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -16,11 +17,16 @@ const useStyles = makeStyles((theme) => ({
   title: {
     fontSize: '24px',
   },
+  infoContainer:{
+    display: 'flex',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    marginTop: theme.spacing(2)
+  },
   info: {
     display: 'flex',
     justifyContent: 'flex-start',
     alignItems: 'center',
-    alignContent: 'center',
     marginTop: theme.spacing(2)
     
   },
@@ -60,17 +66,21 @@ const AboutHost = () => {
     <div className={classes.root}>
       <Typography variant className={classes.title}>About your host</Typography>
       <Grid container spacing={2}>
-        <Grid item xs={12} sm={6} className={classes.info}>
-          <Avatar className={classes.avatar} alt="host-avatar" src="https://pbs.twimg.com/profile_images/1004869186089312258/BGYHhJOl_400x400.jpg" />
-          <Grid item className={classes.column}>
-            <Typography variant className={classes.host}>Johnny Lozada</Typography>
-            <Typography variant className={classes.member}>Member since 12th March 2021</Typography>
-            <Grid className={classes.veryfied}>
-              <VerifiedUserIcon color="secondary" className={classes.icon}/>
-              <Typography variant>Veryfied member</Typography>
+        <Grid item xs={12} className={classes.infoContainer}>
+          <Grid item xs={12} sm={6} className={classes.info}>
+            <Avatar className={classes.avatar} alt="host-avatar" src="https://pbs.twimg.com/profile_images/1004869186089312258/BGYHhJOl_400x400.jpg" />
+            <Grid item className={classes.column}>
+              <Typography variant className={classes.host}>Johnny Lozada</Typography>
+              <Typography variant className={classes.member}>Member since 12th March 2021</Typography>
+              <Grid className={classes.veryfied}>
+                <VerifiedUserIcon color="secondary" className={classes.icon}/>
+                <Typography variant>Veryfied identity</Typography>
+              </Grid>
             </Grid>
           </Grid>
+          <Badges />
         </Grid>
+      
 
         <Grid item xs={12} sm={12} className={classes.about}>
           <Typography variant >
