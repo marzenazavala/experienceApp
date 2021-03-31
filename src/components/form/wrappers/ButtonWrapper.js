@@ -16,8 +16,9 @@ const ButtonWrapper = ({children, ...otherProps}) => {
     onClick: handleSubmit
   }
 
+
   return (
-    <Button {...configButton}>
+    <Button {...configButton} >
       {children}
     </Button>
   );

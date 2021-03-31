@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { makeStyles, Typography, Grid, Paper, MenuItem } from '@material-ui/core';
+import { makeStyles, Typography, Grid, Paper, MenuItem, Button } from '@material-ui/core';
 import { duration, group, languages } from '../../utils/newExperienceData';
 import { collections } from '../../utils/collections';
 import DatePicker from './wrappers/DatePicker';
@@ -7,7 +7,7 @@ import {Formik, Form} from 'formik';
 import * as Yup from 'yup';
 import TextField from './wrappers/TextFieldWrapper';
 import Select from './wrappers/SelectWrapper';
-import Button from './wrappers/ButtonWrapper';
+import SubmitButton from './wrappers/ButtonWrapper';
 import { connect } from 'react-redux';
 import {createProject} from '../../store/actions/projectActions';
 import { Redirect } from 'react-router-dom';
@@ -53,6 +53,9 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'flex-end',
   },
+  reset: {
+    marginRight: theme.spacing(2)
+  },
 }));
 
 const INITIAL_FORM_STATE = {
@@ -94,19 +97,24 @@ const FORM_VALIDATION = Yup.object().shape({
 const NewExperienceForm = ({handleChange, auth, createProject, history}) => {
   const classes = useStyles();
   const [snackBar, setSnackBar] = useState(false)
+  const [submitting, setSubmitting] = useState(false)
 
-  const handleSubmit = (values) => {
+  const handleSubmit = (values, onSubmitProps) => {
+    setSubmitting(true);
     createProject({...values});
-    setSnackBar(true)
-    //history.push('/');
-    console.log(values)
+    setSubmitting(false);
+    setSnackBar(true);
+    console.log(values);
+    console.log(onSubmitProps);
+    onSubmitProps.resetForm();
+    
   };
 
   const handleClose = (event, reason) => {
     if (reason === 'clickaway') {
       return
     };
-    setSnackBar(false)
+    setSnackBar(false);
   };
 
   if(!auth.uid) return <Redirect to='/signin' />
@@ -241,7 +249,9 @@ const NewExperienceForm = ({handleChange, auth, createProject, history}) => {
           
         
           <Grid item xs={12} className={classes.buttons}>
-            <Button>Submit</Button>
+            <Button type="reset" variant="outlined" color="primary" className={classes.reset}>Reset</Button>
+            <SubmitButton type="submit">{submitting ? 'Sending' : 'Submit'}</SubmitButton>
+            
             {/* <Button 
               type="submit" 
               color="secondary" 

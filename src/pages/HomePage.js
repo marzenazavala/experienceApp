@@ -17,7 +17,7 @@ const HomePage = ({ projects }) => (
     <Header />
     <Divider orientation='horizontal'/>
     <div className="black-text center newest-section">
-      <h5>The newest events</h5>
+      <h5>The newest experiences</h5>
       { projects && <ProjectList projects={projects}/> }
     </div>
     

@@ -10,11 +10,10 @@ import { IconButton } from '@material-ui/core';
 import FavoriteIcon from '@material-ui/icons/Favorite'
 import ShareIcon from '@material-ui/icons/Share';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   root: {
-    minWidth: 200,
-    maxWidth: 200,
-    height: 300
+    width: '100%',
+    height: '100%',
   },
  
   title: {
@@ -33,7 +32,7 @@ const useStyles = makeStyles({
     minWidth: 200,
     minHeight: 150
   },
-});
+}));
 
 const ProjectCard = ({project}) => {
   const classes = useStyles();
