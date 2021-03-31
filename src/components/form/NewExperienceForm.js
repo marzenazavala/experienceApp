@@ -1,9 +1,5 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import Paper from '@material-ui/core/Paper';
-import MenuItem from '@material-ui/core/MenuItem';
+import React, { useState } from 'react';
+import { makeStyles, Typography, Grid, Paper, MenuItem } from '@material-ui/core';
 import { duration, group, languages } from '../../utils/newExperienceData';
 import { collections } from '../../utils/collections';
 import DatePicker from './wrappers/DatePicker';
@@ -15,6 +11,7 @@ import Button from './wrappers/ButtonWrapper';
 import { connect } from 'react-redux';
 import {createProject} from '../../store/actions/projectActions';
 import { Redirect } from 'react-router-dom';
+import SnackBarAlert from '../snackBar/SnackBarAlert';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -96,11 +93,20 @@ const FORM_VALIDATION = Yup.object().shape({
 
 const NewExperienceForm = ({handleChange, auth, createProject, history}) => {
   const classes = useStyles();
+  const [snackBar, setSnackBar] = useState(false)
 
   const handleSubmit = (values) => {
     createProject({...values});
-    history.push('/');
+    setSnackBar(true)
+    //history.push('/');
     console.log(values)
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return
+    };
+    setSnackBar(false)
   };
 
   if(!auth.uid) return <Redirect to='/signin' />
@@ -111,7 +117,7 @@ const NewExperienceForm = ({handleChange, auth, createProject, history}) => {
       <Paper className={classes.paper}>
         <Typography color="textPrimary" className={classes.title}>
           <p>Create New Experience</p>
-          <span className={classes.subtitle}>Share with the world your passion</span>
+          <span className={classes.subtitle}>Share your passion with the world</span>
         </Typography>
         <Formik 
           initialValues={{...INITIAL_FORM_STATE}}
@@ -250,8 +256,13 @@ const NewExperienceForm = ({handleChange, auth, createProject, history}) => {
         </Grid>
           </Form>
         </Formik>
-        
       </Paper>
+      {snackBar && <SnackBarAlert 
+          handleClose={handleClose} 
+          open={snackBar} 
+          severity='success'
+          message='Your experience was successfully created'
+          />}
       </main>
     </>
   )
